@@ -37,7 +37,7 @@ function multiTable() {
 function yesOrNo() {
   answer = prompt("Password, please");
   while (answer.toLowerCase() !=="yes" && answer.toLowerCase() !=="no") 
-  answer = prompt("Password, please.");
+  answer = prompt("Try again.");
   alert ("Correct!");
 }
 
