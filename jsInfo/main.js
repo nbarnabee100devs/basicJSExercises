@@ -26,3 +26,11 @@ function calcPower(x,n) {
   result *= x;
   document.querySelector("#result").innerHTML = `${x}<sup>${n}</sup> = ${result}`;
 }
+
+const ask = (question, yes, no) => confirm(question) ? yes() : no();
+
+ask (
+  "Do you agree?",
+  () => alert("You agreed."),
+  () => alert("You cancelled the execution.")
+)
