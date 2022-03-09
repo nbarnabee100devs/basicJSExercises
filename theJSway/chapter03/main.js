@@ -83,3 +83,45 @@ function monthDay() {
   }
   else alert(`Month ${month} has 30 days.`);
 }
+
+function nextSecond() {
+  let hour = Number(prompt("Please enter the hour."));
+  let minute = Number(prompt("Please enter the minute."));
+  let second = Number(prompt("Please enter the second."));
+    if ((hour < 0) || (hour > 24) || !(Number.isInteger(hour)) || !(hour) ||(minute < 0) || (minute > 59) || !(Number.isInteger(minute)) || !(minute) || (second < 0) || (second > 59) || !(Number.isInteger(second)) || !(second)) {
+      alert("Invalid entry.  Please try again");
+    }
+    else {
+      second += 1;
+        if (second < 60) {
+          alert(`In one second it will be ${hour}h${minute}m${second}s`);
+        }
+        else {
+          second = 0;
+          minute += 1;
+          if (minute < 60) {
+            alert(`In one second it will be ${hour}h${minute}m${second}s`);
+        }
+        else {
+          minute = 0;
+          hour += 1;
+          if (hour < 24) {
+            alert(`In one second it will be ${hour}h${minute}m${second}s`);
+          }
+          else {
+            hour = 0;
+            alert(`In one second it will be ${hour}h${minute}m${second}s`);
+          }
+        }
+      }
+    }
+  }
+
+// function checkInput(x, y, z) {
+//   console.log(x, y, z);
+//   if ((x < 0) || (x > 24) || !(Number.isInteger(x)) || !(x) ||(y < 0) || (y > 59) || !(Number.isInteger(y)) || !(y) || (z < 0) || (z > 59) || !(Number.isInteger(z)) || !(z)) {
+//     alert("Invalid entry.  Please try again");
+//     nextSecond();
+//   }
+//   else return true;
+// }
