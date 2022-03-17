@@ -1,63 +1,55 @@
-// Aurora
-
 const aurora = {
   name: "Aurora",
   health: 150,
-  strength: 25,
+  strength: 50,
   xp: 0,
   describe() {
-    return `${this.name} has ${this.health} hp, ${this.strength} strength, and ${this.xp} experience points.`;
-  } 
-};
-
-console.log(aurora.describe());
-
-aurora.health -= 20;
-aurora.strength += 10;
-aurora.xp += 15;
-
-console.log(aurora.describe());
-
-
-// Dog
-
-const dog = {
-  name: "Leo",
-  species: "English Cocker Spaniel",
-  size: 32,
-  bark() {
-    return "Wuff wuff!"
+    console.log(`${this.name} has ${this.health} hp, ${this.strength} strength, and ${this.xp} experience.`);
+  },
+  battlecry(m) {
+    alert(m);
   }
 }
 
-console.log(`${dog.name} is an ${dog.species} dog measuring ${dog.size}`);
-console.log(`Look, a cat! ${dog.name} barks: ${dog.bark()}`);
+const dog = {
+  name: "Leo",
+  breed: "English Cocker Spaniel",
+  size: 32,
+  bark() {
+    return "Wuff!  Wuff!"
+  },
+  introduction() {
+    console.log(`My ${this.breed}, ${this.name}, is ${this.size} cm at the shoulder.`);
+  },
+  catAlarm() {
+    console.log(`Look, a cat!  ${this.name} barks: ${this.bark()}`);
+  }
+}
 
 let r;
 
 const circle = {
-  getRadius() {
-    r = Number(prompt("Enter the circle radius:"));
+  radius() {
+    r = Number(prompt("Enter the circle radius."));
   },
-  circumference() { 
-    return 2 * r * Math.PI; 
+  area() {
+    if (!r) 
+      this.area(this.radius());
+    else console.log(r * r * Math.PI);
   },
-  area() { 
-    return r * r * Math.PI;
-  },
-  describe() {
-    return `Its circumference is ${this.circumference} and its radius is ${this.radius}.`
+  circumference() {
+    return 2 * Math.PI * r;
   }
-};
+}
+
 
 const account = {
   name: "Alex",
   balance: 0,
-  credit(val) {
-    this.balance += val;
-    return this.balance;
+  credit(amount) {
+    this.balance += amount;
   },
   describe() {
-    return `Owner: ${this.name}, balance ${this.balance}`;
+    console.log(`Owner: ${this.name}, Balance ${this.balance}`);
   }
-};
+}
