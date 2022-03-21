@@ -37,3 +37,39 @@ function filterRangeInPlace(arr, a, b) {
   arr.forEach((e, i, arr) => (e >= a && e <= b) ? e : arr.splice(i, 1));
   console.log(arr);
 };
+
+
+/* Sort in decreasing order */
+arr = [5, 2, 1, -10, 8];
+
+function sortDecreasing(arr) {
+ arr.sort((a, b) => b - a);
+ return arr;
+}
+
+
+/*  Copy and sort array
+
+We have an array of strings arr. We’d like to have a sorted copy of it, but keep arr unmodified.
+
+Create a function copySorted(arr) that returns such a copy.
+
+*/
+
+stringArr = ["HTML", "JavaScript", "CSS"]
+
+function copySorted(arr) {
+  let sorted = arr.slice();
+  sorted.sort();
+  };
+
+
+  /* Calculator */
+
+  const Calculator = function(str) {
+    return eval(str);
+  }
+
+  let calc = new Calculator;
+
+  
