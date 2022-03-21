@@ -65,11 +65,3 @@ function copySorted(arr) {
 
 
   /* Calculator */
-
-  const Calculator = function(str) {
-    return eval(str);
-  }
-
-  let calc = new Calculator;
-
-  
