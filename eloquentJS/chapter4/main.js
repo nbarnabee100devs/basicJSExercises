@@ -35,3 +35,14 @@ function reverseArrayInPlace(arr) {
   }
   return arr;
 }
+
+
+/* Array to list */
+
+function arrayToList(a, b, c) {
+  let list = {
+    value: a,
+    rest: arrayToList(b, c)
+  };
+  return list;
+}
