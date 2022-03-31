@@ -12,8 +12,6 @@ function camelize(str) {
 
 let string = "your-text-here";
 
-// I continue to struggle with this one.  I understand the solution when I see it, but I can't seem to get there organically.
-
 
 
 
@@ -73,7 +71,41 @@ function copySorted(arr) {
 
 // Create an extendable calculator
 
-// go fuck yourself
+// blah blah blah a million instructions.
+// Honestly, I do not understand how this one works.  Or, rather, I think I understand it, but there's no way I could replicate it myself.  I am copying the solution here, just to get the practice of typing it, and adding comments to explain it, but I have got to move on from these exercises.
+
+function Calculator() {
+  this.methods = {
+    "-": (a, b) => a - b,
+    "+": (a, b) => a + b,
+  };  // this really frustrated me the first time I read it, because it doesn't make sense until you get on to the calculate method
+
+  this.calculate = function(str) {
+
+    let split = str.split(" "),
+      a = +split[0],
+      op = split[1],
+      b = +split[2];
+
+    if (!this.methods[op] || isNaN(a) || isNaN(b))
+      return NaN;
+    return this.methods[op](a, b);
+  };
+  
+  // so when you enter your string, e.g. "1 + 2", the calculate method is splitting it, assigning the various parts to variables, and then passing them to methods
+  this.addMethod = function(name, func) {
+    this.methods[name] = func;
+  };
+  
+}
+
+const powerCalc = new Calculator;
+powerCalc.addMethod("*", (a, b) => a * b);
+powerCalc.addMethod("/", (a, b) => a / b);
+powerCalc.addMethod("**", (a, b) => a**b);
+
+  // honestly I hate some of these exercises, but perhaps my perspective is wrong:  I came in assuming that we would be able to do these based on what we learned in this chapter, but this task, the "shuffle" task and one of the other ones about destructuring objects.... I'm sorry, but no way is anyone without prior knowledge going to be able to come in here and do these problems.
+
 
 
 let john = { name: "John", surname: "Smith", id: 1, age: 25 };
@@ -163,4 +195,21 @@ function uniqueArr(arr) {
     newArr.push(a);
   });
   return newArr;
+};
+
+
+
+// Create keyed object from array
+
+// Let’s say we received an array of users in the form {id:..., name:..., age:... }.
+
+// Create a function groupById(arr) that creates an object from it, with id as the key, and array items as values.
+
+// Frankly I do not understand at all what is happening here.  As with the calculator exercise, I am just copying it.  But I do not understand what is happening with reduce() in this case.
+
+function groupById(array) {
+  return array.reduce((obj, value) => {
+    obj[value.id] = value;
+    return obj;
+  }, {})
 };
