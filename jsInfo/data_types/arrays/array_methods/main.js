@@ -205,6 +205,24 @@ function uniqueArr(arr) {
 
 // Create a function groupById(arr) that creates an object from it, with id as the key, and array items as values.
 
+let usersKeyed = [
+  {id: 'john', name: "John Smith", age: 20},
+  {id: 'ann', name: "Ann Smith", age: 24},
+  {id: 'pete', name: "Pete Peterson", age: 31},
+];
+
+let usersById = groupById(users);
+
+/*
+// after the call we should have:
+
+usersById = {
+  john: {id: 'john', name: "John Smith", age: 20},
+  ann: {id: 'ann', name: "Ann Smith", age: 24},
+  pete: {id: 'pete', name: "Pete Peterson", age: 31},
+}
+*/
+
 // Frankly I do not understand at all what is happening here.  As with the calculator exercise, I am just copying it.  But I do not understand what is happening with reduce() in this case.
 
 function groupById(array) {
@@ -213,3 +231,38 @@ function groupById(array) {
     return obj;
   }, {})
 };
+
+// Ok, apparently if the initial value is set to an empty array or an empty object (as in this case), the calculated values will be pushed into the object.  Nice to know!  Shame that the person who wrote javascript.info didn't bother to mention that!!!!!!!
+
+// I still don't really understand why this works or what it's doing, though.
+
+/* 
+Here's an explanation I was given on Discord:
+
+function groupById(array) {
+  return array.reduce((obj, value) => {
+    obj[value.id] = value;
+    return obj;
+  }, {})
+}
+
+Reduce is a function that transforms an array into another single thing (it could be a number, another array, an object, etc). It will invoke a callback function on every iteration, and the return of this callback function is what affects the ending structure. 
+
+So, the accumulator represents the ending structure we want to output (in the case of the array sum, this structure is just a number)
+
+In the javascript info question, you want to return a new object that has all the array data inside properties with their id names. So, obj is the accumulator, and value is the current element in the array iteration. On each iteration, it is adding the actual array element to obj and returning the full object, so it will be accessible on the next iteration
+obj[value.id] = value;
+
+Lets say the current element is the first of the array, so, it's doing:
+
+//first element: {id: 'john', name: "John Smith", age: 20}
+
+obj[john] = {id: 'john', name: "John Smith", age: 20} 
+So the new object (obj) you want to return now is like this
+
+{
+  john : {id: 'john', name: "John Smith", age: 20}
+}
+And so on for every iteration until the loop ends and you can return the full new object
+
+*/
