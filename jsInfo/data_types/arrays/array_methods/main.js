@@ -144,3 +144,23 @@ function shuffle(arr) {
 function getAverageAge(arr) {
   return arr.reduce((a, b) => a + b.age, 0) / arr.length;
 }
+
+
+
+// Filter unique array members
+
+// Let arr be an array.
+
+// Create a function unique(arr) that should return an array with unique items of arr.
+
+let strings = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"];
+
+function uniqueArr(arr) {
+  let newArr = [];
+  arr.forEach(a => {
+    if (newArr.includes(a) === false)
+    newArr.push(a);
+  });
+  return newArr;
+};
