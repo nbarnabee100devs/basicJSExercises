@@ -4,15 +4,8 @@
 
 // That is: removes all dashes, each word after dash becomes uppercased.
 
-function camelize(str) {
-  let newStr = str.split("-").map((e, i) => (i===0) ? e : (e[0].toUpperCase() + e.slice(1))).join("");
-  return newStr;
-};
-  
 
-let string = "your-text-here";
-
-
+const camelize = (string) => string.split("-").map((e,i) => (i===0) ? e : (e[0].toUpperCase() + e.slice(1))).join("");
 
 
 // Filter range
@@ -21,12 +14,13 @@ let string = "your-text-here";
 
 // The function should not modify the array. It should return the new array.
 
-function filterRange(arr, a, b) {
-  let newArr = arr.filter(e => ((e >= a && e <= b)));
-  return newArr;
-}
+
 
 let arr = [5, 3, 8, 1];
+
+const filterRange = (arr, a, b) => arr.filter(e => (e >= a && e <= b));
+
+filterRange(arr, 1, 4);
 
 
 
@@ -37,22 +31,22 @@ let arr = [5, 3, 8, 1];
 
 // The function should only modify the array. It should not return anything.
 
+let arr2 = [5, 3, 8, 1]
+
 function filterRangeInPlace(arr, a, b) {
-  arr.forEach((e, i) => (e >= a && e <= b) ? e : arr.splice(i, 1));
+ for (let i in arr) {
+   if (arr[i] >= a && arr[i] <= b)
+   arr.splice(i, 1);
+ }
 }
-
-console.log(arr);
-filterRangeInPlace(arr, 1, 4);
-console.log(arr);
-
 
 
 // Sort in decreasing order
 
-let arr2 = [5, 2, 1, -10, 8];
-console.log(arr2);
-arr2.sort((a, b) => (b - a));
-console.log(arr2);
+function sortDecrease(arr) {
+  return arr.sort((a, b) => b - a);
+}
+
 
 
 // Copy and sort array
@@ -64,8 +58,7 @@ console.log(arr2);
 let arr3 = ["HTML", "JavaScript", "CSS"];
 
 function copySorted(arr) {
-  let newArr = arr3.slice().sort((a, b) => (a > b) ? 1 : -1);
-  return newArr;
+  return arr.slice().sort((a, b) => a > b ? 1 : -1);
 }
 
 
@@ -86,6 +79,8 @@ function Calculator() {
       a = +split[0],
       op = split[1],
       b = +split[2];
+
+      // Ok, so you take the string and split it into an array, and then assign the values of the array to particular variables
 
     if (!this.methods[op] || isNaN(a) || isNaN(b))
       return NaN;
@@ -119,9 +114,7 @@ let users = [ john, pete, mary ];
 
 // You have an array of user objects, each one has user.name. Write the code that converts it into an array of names.
 
-
-let names = users.map(e => e.name);
-
+const userNames = (arr) => arr.map((e) => e.name);
 
 
 // Map to objects
@@ -132,21 +125,17 @@ let names = users.map(e => e.name);
 
 // You're turning each object in the array into another object
 
-let usersMapped = users.map(e => ({
-  fullname: `${e.name} ${e.surname}`,
-  id: e.id,
-}));
+
+
 
 
 // Sort users by age
 
 // Write the function sortByAge(users) that gets an array of objects with the age property and sorts them by age.
 
-let arrAges = [ pete, john, mary ];
-
-function sortByAge(arr) {
-  return arr.sort((a, b) => (a.age - b.age))
-};
+function sortByAge(users) {
+  return users.sort((a, b) => a.age > b.age ? 1 : -1);
+}
 
 
 
@@ -158,24 +147,12 @@ function sortByAge(arr) {
 
 // All element orders should have an equal probability. For instance, [1,2,3] can be reordered as [1,2,3] or [1,3,2] or [3,1,2] etc, with equal probability of each case.
 
-let arrNums = [1, 2, 3]
-
-function shuffle(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  };
-  return arr;
-}
 
 
 // Get average age
 
 // Write the function getAverageAge(users) that gets an array of objects with property age and returns the average age.
 
-function getAverageAge(arr) {
-  return arr.reduce((a, b) => a + b.age, 0) / arr.length;
-}
 
 
 
@@ -185,17 +162,6 @@ function getAverageAge(arr) {
 
 // Create a function unique(arr) that should return an array with unique items of arr.
 
-let strings = ["Hare", "Krishna", "Hare", "Krishna",
-  "Krishna", "Krishna", "Hare", "Hare", ":-O"];
-
-function uniqueArr(arr) {
-  let newArr = [];
-  arr.forEach(a => {
-    if (newArr.includes(a) === false)
-    newArr.push(a);
-  });
-  return newArr;
-};
 
 
 
@@ -211,7 +177,7 @@ let usersKeyed = [
   {id: 'pete', name: "Pete Peterson", age: 31},
 ];
 
-let usersById = groupById(users);
+// let usersById = groupById(users);
 
 /*
 // after the call we should have:
@@ -225,12 +191,6 @@ usersById = {
 
 // Frankly I do not understand at all what is happening here.  As with the calculator exercise, I am just copying it.  But I do not understand what is happening with reduce() in this case.
 
-function groupById(array) {
-  return array.reduce((obj, value) => {
-    obj[value.id] = value;
-    return obj;
-  }, {})
-};
 
 // Ok, apparently if the initial value is set to an empty array or an empty object (as in this case), the calculated values will be pushed into the object.  Nice to know!  Shame that the person who wrote javascript.info didn't bother to mention that!!!!!!!
 
