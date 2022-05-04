@@ -32,6 +32,21 @@ function reverseArray(arr) {
 function reverseArrayInPlace(arr) {
   for (let i = 0; i < arr.length; i++) {
     arr.splice(i, 0, arr.pop());
+    console.log(arr);
   }
   return arr;
 }
+
+/* Trying to understand linked lists */
+
+let list = {
+  value: 1,
+  rest: {
+    value: 2,
+    rest: {
+      value: 3,
+      rest: null
+    }
+  }
+};
+
