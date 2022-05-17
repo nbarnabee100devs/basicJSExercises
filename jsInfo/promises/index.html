@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Javascript.info: Promises</title>
+</head>
+
+<body>
+  Exercises from the <a href="https://javascript.info/async">Promises/Async chapter</a> of javascript.info
+  <script>
+
+    // This wasn't an exercise; I was just playing around
+
+    let promise = new Promise(function (resolve, reject) {
+      setTimeout(() => resolve(console.log("done")), 1000);
+    });
+
+    // now, if I run this and check the promise object in the console, it will show as fulfilled
+
+    /*    let otherPromise = new Promise(function (resolve, reject) {
+          setTimeout(() => reject(new Error("Error")), 1000)
+        }); 
+        
+        */
+
+    // Ok, the above does throw an error but the message comes through and if I check otherPromise, it shows its state as rejected 
+
+    // And now I understand why they written that you can only call one or the other when doing it this way:  it changes the state and the state cannot be altered.
+
+    let anotherPromise = new Promise(function (resolve, reject) {
+      resolve("great success");
+
+      setTimeout(() => resolve(2), 1000);
+    });
+
+    anotherPromise.then(alert);
+
+    //But what I don't get is how the (1) in resolve is getting to the alert.  I guess the .then is calling the alert function and passing what's in resolve() as the argument.
+
+    let aFailedPromise = new Promise(function (resolve, reject) {
+      reject("error");
+    });
+
+    anotherPromise.then(error => alert("Error"));
+
+    // the above is still messing up, and I'm not even attempting to throw a new error object.  There is something I don't understand.
+
+
+    // Delay with a promise.  I had no idea what to do, so just copied the solution.  I will return to it another day.
+
+    function delay(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    // so this function returns a promise that, on resolution, calls setTimeout with another function and a delay
+
+    delay(3000).then(() => alert("runs after 3 seconds"));
+
+
+// Animated circle with promise
+// Again, I simply do not understand this example.  When I look at the code, I can grasp what is happening, but I would not be able to write this.
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
